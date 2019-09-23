@@ -13,7 +13,8 @@
           :auto-upload="false"
           :file-list="fileList"
           :http-request='upload'
-          :limit='1'
+          required
+          multiple
         >
          <el-button slot='trigger' type='primary'>
            选取文件

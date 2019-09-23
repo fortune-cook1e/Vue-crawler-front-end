@@ -1,7 +1,7 @@
 <template>
   <div class="daily">
     <el-alert
-      title='请选择2个星期，然后获取daily trends'
+      title='请选择2个日期，然后获取daily trends'
       type='warning'
     />
     <el-form :model='form' ref='form' label-width='100px'>
@@ -16,11 +16,12 @@
           unlink-panels
           :picker-options='pickerOptions'
           :default-time="['08:00:00', '08:00:00']"
+          required
         ></el-date-picker>
       </el-form-item>
 
       <el-form-item label='输出文件类型'>
-        <el-select v-model='form.fileType' placeholder='选择文件类型'>
+        <el-select v-model='form.fileType' placeholder='选择文件类型' required>
           <el-option label='js' value='js'></el-option>
            <el-option label='csv' value='csv'></el-option>
         </el-select>

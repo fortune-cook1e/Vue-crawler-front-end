@@ -2,7 +2,7 @@
   <div class="convert">
     <el-alert
       type='warning'
-      title='上传csv格式文件，将其转换为js文件'
+      title='上传csv格式文件，将其转换为js文件(可多选)'
     ></el-alert>
     <el-form ref='form' label-width='100px'>
       <el-form-item>
@@ -13,6 +13,7 @@
           :file-list="fileList"
           :http-request='upload'
           multiple
+          required
         >
          <el-button slot='trigger' type='primary'>
            选取文件

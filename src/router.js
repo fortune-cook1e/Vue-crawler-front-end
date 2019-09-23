@@ -27,6 +27,11 @@ const routes = [
     path: '/related',
     name: 'related',
     component: () => import('@/views/Related.vue')
+  },
+  {
+    path: '/combine',
+    name: 'combine',
+    component: () => import('@/views/Combine.vue')
   }
 ]
 

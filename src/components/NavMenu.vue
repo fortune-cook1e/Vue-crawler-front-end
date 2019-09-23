@@ -24,6 +24,12 @@
            Related
          </el-menu-item>
        </router-link>
+
+       <router-link :to="{name:'combine'}">
+         <el-menu-item>
+           Combine
+         </el-menu-item>
+       </router-link>
     </el-menu>
   </div>
 </template>

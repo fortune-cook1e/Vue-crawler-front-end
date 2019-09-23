@@ -1,19 +1,18 @@
 <template>
-  <div class="related">
+  <div class="combine-js">
     <el-alert
       type='warning'
-      title='上传csv或者js文件，获取对应的relatedQueries(可多选)'
+      title='上传文件 然后合并成一个js/csv 格式文件'
     ></el-alert>
-
-    <el-form ref='form' label-width='100px' :model='form'>
+    <el-form :model='form' ref='form' label-width='100px'>
       <el-form-item label='上传文件'>
         <el-upload
-          ref='upload'
-          :action='url'
-          :auto-upload='false'
-          :file-list='fileList'
-          multiple
-          required
+            ref='upload'
+            :action='url'
+            :auto-upload='false'
+            :file-list='fileList'
+            multiple
+            required
         >
           <el-button slot='trigger' type='primary'>
             选择文件
@@ -21,8 +20,8 @@
         </el-upload>
       </el-form-item>
 
-      <el-form-item label='选择输出文件类型'>
-        <el-select v-model='form.fileType' placeholder='类型' required>
+      <el-form-item label='文件格式'>
+        <el-select v-model='form.fileType' placeholder='格式' required>
           <el-option label='js' value='js'></el-option>
           <el-option label='csv' value='csv'></el-option>
         </el-select>
@@ -30,7 +29,7 @@
 
       <el-form-item>
         <el-button type='primary' @click="submit('form')">
-          开始获取
+          开始转换文件
         </el-button>
       </el-form-item>
     </el-form>
@@ -38,16 +37,16 @@
 </template>
 
 <script>
-import { related } from '@/apis/related'
+import { combine } from '@/apis/combine'
 export default {
-  name: 'Related',
+  name: 'Combine',
   data () {
     return {
+      url: '',
+      fileList: [],
       form: {
         fileType: ''
-      },
-      fileList: [],
-      url: 'http://localhost:3000/related'
+      }
     }
   },
   methods: {
@@ -57,13 +56,12 @@ export default {
         formData.append('uploadFile', file.raw)
       })
       formData.append('fileType', this.form.fileType)
-      related(formData)
+      combine(formData)
         .then(res => {
-          console.log(res)
           if (res.data === 'ok') {
             this.$message({
               type: 'success',
-              message: 'related全部获取成功'
+              message: '文件转换成功'
             })
           }
         }).catch(e => {
