@@ -17,6 +17,16 @@ const routes = [
     path: '/convert',
     name: 'convert',
     component: () => import('@/views/Convert.vue')
+  },
+  {
+    path: '/csv',
+    name: 'csv',
+    component: () => import('@/views/Csv.vue')
+  },
+  {
+    path: '/related',
+    name: 'related',
+    component: () => import('@/views/Related.vue')
   }
 ]
 

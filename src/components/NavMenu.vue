@@ -12,6 +12,18 @@
           Convert
         </el-menu-item>
        </router-link>
+
+       <router-link :to="{name:'csv'}">
+         <el-menu-item>
+           Csv
+         </el-menu-item>
+       </router-link>
+
+       <router-link :to="{name:'related'}">
+         <el-menu-item>
+           Related
+         </el-menu-item>
+       </router-link>
     </el-menu>
   </div>
 </template>

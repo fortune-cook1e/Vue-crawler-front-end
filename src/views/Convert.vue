@@ -1,5 +1,9 @@
 <template>
   <div class="convert">
+    <el-alert
+      type='warning'
+      title='上传csv格式文件，将其转换为js文件'
+    ></el-alert>
     <el-form ref='form' label-width='100px'>
       <el-form-item>
         <el-upload
@@ -39,9 +43,17 @@ export default {
       })
       convert(formData)
         .then(res => {
-          console.log(res)
+          if (res.data === 'ok') {
+            this.$messaage({
+              type: 'success',
+              message: 'csv格式文件转换成功'
+            })
+          }
         }).catch(e => {
-          console.log(e)
+          this.$messaage({
+            type: 'error',
+            message: e.message
+          })
         })
     }
   }

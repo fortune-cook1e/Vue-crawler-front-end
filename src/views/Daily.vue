@@ -1,14 +1,22 @@
 <template>
   <div class="daily">
+    <el-alert
+      title='请选择2个星期，然后获取daily trends'
+      type='warning'
+    />
     <el-form :model='form' ref='form' label-width='100px'>
 
-      <!-- 选择日期 -->
-      <el-form-item label='日期'>
+      <el-form-item label='范围日期'>
         <el-date-picker
-          type='dates'
           v-model='form.date'
-          placeholder='选择多个日期'
-        />
+          type='daterange'
+          range-separator="至"
+          start-placeholder='开始日期'
+          end-placeholder='结束日期'
+          unlink-panels
+          :picker-options='pickerOptions'
+          :default-time="['08:00:00', '08:00:00']"
+        ></el-date-picker>
       </el-form-item>
 
       <el-form-item label='输出文件类型'>
@@ -35,16 +43,31 @@ export default {
     return {
       form: {
         date: ''
+      },
+      pickerOptions: {
+        disabledDate (time) {
+          return time.getTime() > Date.now()
+        }
       }
     }
   },
   methods: {
     submit (formName) {
+      console.log(new Date('2019-09-10'))
+      console.log(this.form.date)
       daily(this.form)
         .then(res => {
-          console.log(res.data)
+          if (res.data === 'ok') {
+            this.$message({
+              message: '数据获取成功',
+              type: 'success'
+            })
+          }
         }).catch(e => {
-          console.log(e)
+          this.$message({
+            message: e.message,
+            type: 'error'
+          })
         })
     }
   }

@@ -1,5 +1,10 @@
 <template>
   <div class="csv">
+    <el-alert
+      title='上传js文件 转换为 csv格式（单选）'
+      type='warning'
+    ></el-alert>
+
     <el-form ref='form' label-width='100px'>
       <el-form-item>
         <el-upload
@@ -8,6 +13,7 @@
           :auto-upload="false"
           :file-list="fileList"
           :http-request='upload'
+          :limit='1'
         >
          <el-button slot='trigger' type='primary'>
            选取文件
@@ -25,6 +31,7 @@ export default {
   name: 'Csv',
   data () {
     return {
+      fileList: [],
       url: 'http://localhost:3000/csv'
     }
   },
@@ -36,9 +43,17 @@ export default {
       })
       csv(formData)
         .then(res => {
-          console.log(res)
+          if (res.data === 'ok') {
+            this.$message({
+              type: 'success',
+              message: '文件转换成功'
+            })
+          }
         }).catch(e => {
-          console.log(e)
+          this.$message({
+            type: 'error',
+            message: e.message
+          })
         })
     }
   }
