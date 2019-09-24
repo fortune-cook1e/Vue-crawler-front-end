@@ -1,0 +1,62 @@
+<template>
+  <div class="translate">
+    <SmartForm
+      :tip='tip'
+      labelWidth='100px'
+      :form='form'
+      :operation='submit'
+    >
+      <template v-slot:file>
+        <el-form-item label='上传文件'>
+          <el-upload
+            ref='upload'
+            :action='url'
+            :auto-upload='false'
+            :file-list='fileList'
+            multiple
+            required
+          >
+            <el-button slot='trigger' type='primary'>
+              选取文件
+            </el-button>
+          </el-upload>
+        </el-form-item>
+      </template>
+
+    </SmartForm>
+  </div>
+</template>
+
+<script>
+import { translate as _translate } from '@/apis/translate'
+import SmartForm from '@/components/SmartForm'
+export default {
+  name: 'translate',
+  components: {
+    SmartForm
+  },
+  data () {
+    return {
+      tip: '翻译搜狗词库的txt或者csv格式文件，输出为csv格式',
+      form: {},
+      url: 'http://localhost:3000/translate',
+      fileList: []
+    }
+  },
+  methods: {
+    submit (formName) {
+      let form = new FormData()
+      this.$refs.upload.uploadFiles.forEach(file => {
+        form.append('uploadFiles', file.raw)
+        console.log(file.raw)
+      })
+      _translate(form)
+        .then(res => {
+          console.log(res)
+        }).catch(e => {
+          console.log(e)
+        })
+    }
+  }
+}
+</script>

@@ -32,6 +32,11 @@ const routes = [
     path: '/combine',
     name: 'combine',
     component: () => import('@/views/Combine.vue')
+  },
+  {
+    path: '/translate',
+    name: 'translate',
+    component: () => import('@/views/Translate.vue')
   }
 ]
 

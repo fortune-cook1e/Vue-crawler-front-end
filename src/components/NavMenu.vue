@@ -1,42 +1,24 @@
 <template>
   <div class="nav-menu">
     <el-menu>
-       <router-link :to="{name:'daily'}">
+      <router-link v-for='item in navs' :key='item' :to="{name:item}">
         <el-menu-item>
-          Daily
+          {{item}}
         </el-menu-item>
-       </router-link>
-
-       <router-link :to="{name:'convert'}">
-        <el-menu-item>
-          Convert
-        </el-menu-item>
-       </router-link>
-
-       <router-link :to="{name:'csv'}">
-         <el-menu-item>
-           Csv
-         </el-menu-item>
-       </router-link>
-
-       <router-link :to="{name:'related'}">
-         <el-menu-item>
-           Related
-         </el-menu-item>
-       </router-link>
-
-       <router-link :to="{name:'combine'}">
-         <el-menu-item>
-           Combine
-         </el-menu-item>
-       </router-link>
+      </router-link>
     </el-menu>
+
   </div>
 </template>
 
 <script>
 export default {
-  name: 'NavMenu'
+  name: 'NavMenu',
+  data () {
+    return {
+      navs: ['daily', 'convert', 'csv', 'related', 'combine', 'translate']
+    }
+  }
 }
 </script>
 

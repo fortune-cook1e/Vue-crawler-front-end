@@ -35,4 +35,7 @@ html,body {
   margin-top: 60px;
   height: 100%;
 }
+a {
+  text-decoration: none;
+}
 </style>

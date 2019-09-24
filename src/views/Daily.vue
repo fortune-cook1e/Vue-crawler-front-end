@@ -1,50 +1,55 @@
 <template>
   <div class="daily">
-    <el-alert
-      title='请选择2个日期，然后获取daily trends'
-      type='warning'
-    />
-    <el-form :model='form' ref='form' label-width='100px'>
+    <SmartForm
+      :tip='tip'
+      labelWidth='100px'
+      :form='form'
+      :operation='submit'
+    >
+      <template v-slot:date>
+        <el-form-item label='范围日期'>
+          <el-date-picker
+            v-model='form.date'
+            type='daterange'
+            range-separator="至"
+            start-placeholder='开始日期'
+            end-placeholder='结束日期'
+            unlink-panels
+            :picker-options='pickerOptions'
+            :default-time="['08:00:00', '08:00:00']"
+            required
+          ></el-date-picker>
+        </el-form-item>
+      </template>
 
-      <el-form-item label='范围日期'>
-        <el-date-picker
-          v-model='form.date'
-          type='daterange'
-          range-separator="至"
-          start-placeholder='开始日期'
-          end-placeholder='结束日期'
-          unlink-panels
-          :picker-options='pickerOptions'
-          :default-time="['08:00:00', '08:00:00']"
-          required
-        ></el-date-picker>
-      </el-form-item>
+      <template v-slot:fileType>
+        <el-form-item label='输出文件类型'>
+          <el-select v-model='form.fileType' placeholder='选择文件类型' required>
+            <el-option label='js' value='js'></el-option>
+            <el-option label='csv' value='csv'></el-option>
+          </el-select>
+        </el-form-item>
+      </template>
 
-      <el-form-item label='输出文件类型'>
-        <el-select v-model='form.fileType' placeholder='选择文件类型' required>
-          <el-option label='js' value='js'></el-option>
-           <el-option label='csv' value='csv'></el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button type='primary' @click.prevent="submit('form')">
-          提交数据
-        </el-button>
-      </el-form-item>
-    </el-form>
+    </SmartForm>
   </div>
 </template>
 
 <script>
 import { daily } from '@/apis/daily'
+import SmartForm from '@/components/SmartForm'
 export default {
   name: 'Daily',
+  components: {
+    SmartForm
+  },
   data () {
     return {
       form: {
-        date: ''
+        date: '',
+        fileType: ''
       },
+      tip: '请选择2个日期，然后获取daily trends',
       pickerOptions: {
         disabledDate (time) {
           return time.getTime() > Date.now()
@@ -54,8 +59,6 @@ export default {
   },
   methods: {
     submit (formName) {
-      console.log(new Date('2019-09-10'))
-      console.log(this.form.date)
       daily(this.form)
         .then(res => {
           if (res.data === 'ok') {
