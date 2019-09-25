@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import { translate as _translate } from '@/apis/translate'
+import { format as _format } from '@/apis/format'
 import SmartForm from '@/components/SmartForm'
 export default {
-  name: 'translate',
+  name: 'format',
   components: {
     SmartForm
   },
@@ -39,7 +39,7 @@ export default {
     return {
       tip: '翻译搜狗词库的txt或者csv格式文件，输出为csv格式',
       form: {},
-      url: 'http://localhost:3000/translate',
+      url: 'http://localhost:3000/format',
       fileList: []
     }
   },
@@ -48,9 +48,8 @@ export default {
       let form = new FormData()
       this.$refs.upload.uploadFiles.forEach(file => {
         form.append('uploadFiles', file.raw)
-        console.log(file.raw)
       })
-      _translate(form)
+      _format(form)
         .then(res => {
           console.log(res)
         }).catch(e => {

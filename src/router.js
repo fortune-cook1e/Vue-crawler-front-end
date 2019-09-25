@@ -19,11 +19,6 @@ const routes = [
     component: () => import('@/views/Convert.vue')
   },
   {
-    path: '/csv',
-    name: 'csv',
-    component: () => import('@/views/Csv.vue')
-  },
-  {
     path: '/related',
     name: 'related',
     component: () => import('@/views/Related.vue')
@@ -34,9 +29,14 @@ const routes = [
     component: () => import('@/views/Combine.vue')
   },
   {
-    path: '/translate',
-    name: 'translate',
-    component: () => import('@/views/Translate.vue')
+    path: '/format',
+    name: 'format',
+    component: () => import('@/views/Format.vue')
+  },
+  {
+    path: '/steps',
+    name: 'steps',
+    component: () => import('@/views/Steps.vue')
   }
 ]
 

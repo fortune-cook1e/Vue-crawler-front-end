@@ -6,10 +6,13 @@
       :type='tipType'
     />
 
-    <el-form :model='form' ref='form' :label-width='labelWidth' :style="{width:'250px'}">
+    <el-form :model='form' ref='form' :label-width='labelWidth' :style="{width:'450px'}">
 
       <!-- 日期插槽 -->
       <slot name='date'></slot>
+
+      <!-- 国家插槽 -->
+      <slot name='country'></slot>
 
       <!-- 文件上传插槽 -->
       <slot name='file'></slot>

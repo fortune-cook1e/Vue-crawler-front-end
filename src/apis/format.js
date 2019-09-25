@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function translate (data) {
+export function format (data) {
   return request({
-    url: '/translate',
+    url: '/format',
     method: 'post',
     headers: { 'Content-Type': 'multipart/form-data' },
     data

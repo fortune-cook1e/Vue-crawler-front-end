@@ -16,7 +16,7 @@ export default {
   name: 'NavMenu',
   data () {
     return {
-      navs: ['daily', 'convert', 'csv', 'related', 'combine', 'translate']
+      navs: ['steps', 'daily', 'convert', 'related', 'combine', 'format']
     }
   }
 }
