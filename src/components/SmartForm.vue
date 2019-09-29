@@ -20,6 +20,9 @@
       <!-- 输出文件类型插槽 -->
       <slot name='fileType'></slot>
 
+      <!-- 默认插槽 -->
+      <slot></slot>
+
       <el-form-item>
         <el-button type='primary' @click.prevent="operation('form')">
           提交数据

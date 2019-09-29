@@ -23,6 +23,16 @@
         </el-form-item>
       </template>
 
+      <template>
+        <el-form-item label='格式化类型'>
+          <el-select v-model='form.formatType'>
+            <el-option value='sougou' label='搜狗词库'></el-option>
+            <el-option value='amazon' label='amazon'></el-option>
+            <el-option value='scientific' label='scientific'></el-option>
+          </el-select>
+        </el-form-item>
+      </template>
+
     </SmartForm>
   </div>
 </template>
@@ -38,7 +48,9 @@ export default {
   data () {
     return {
       tip: '翻译搜狗词库的txt或者csv格式文件，输出为csv格式',
-      form: {},
+      form: {
+        formatType: ''
+      },
       url: 'http://localhost:3000/format',
       fileList: []
     }
@@ -49,6 +61,7 @@ export default {
       this.$refs.upload.uploadFiles.forEach(file => {
         form.append('uploadFiles', file.raw)
       })
+      form.append('formatType', this.form.formatType)
       _format(form)
         .then(res => {
           console.log(res)
