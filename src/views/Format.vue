@@ -29,6 +29,7 @@
             <el-option value='sougou' label='搜狗词库'></el-option>
             <el-option value='amazon' label='amazon'></el-option>
             <el-option value='scientific' label='scientific'></el-option>
+            <el-option value='sonar' label='sonar'></el-option>
           </el-select>
         </el-form-item>
       </template>
