@@ -27,6 +27,9 @@
         <el-button type='primary' @click.prevent="operation('form')">
           提交数据
         </el-button>
+        <el-button type='primary' @click = 'handleFileList'>
+          清空列表
+        </el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -55,6 +58,11 @@ export default {
     labelWidth: {
       type: String,
       default: '100px'
+    }
+  },
+  methods: {
+    handleFileList () {
+      this.$emit('clear-files')
     }
   }
 }

@@ -5,6 +5,7 @@
       labelWidth='100px'
       :form='form'
       :operation='submit'
+      v-on:clear-files='clearFiles'
     >
       <template v-slot:file>
         <el-form-item label='上传文件'>
@@ -69,6 +70,9 @@ export default {
         }).catch(e => {
           console.log(e)
         })
+    },
+    clearFiles () {
+      this.$refs.upload.clearFiles()
     }
   }
 }
